@@ -1,0 +1,7 @@
+export const maxWidth = '1700px'
+export const headerHeight = '3em'
+export const baseColor = 'RGB(60, 60, 60)'
+export const footerColor = 'RGB(40, 40, 40)'
+export const menuItem = 'RGB(80, 80, 80)'
+export const menuItemHover = 'RGB(100, 100, 100)'
+export const menuColor = 'RGB(250, 250, 250)'
