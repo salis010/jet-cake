@@ -1,4 +1,5 @@
 export const maxWidth = '1700px'
+export const breakpoint = '860px'
 export const headerHeight = '3em'
 export const baseColor = 'RGB(60, 60, 60)'
 export const footerColor = 'RGB(40, 40, 40)'
