@@ -91,7 +91,7 @@ export const Details = ({ title, buttonTitle, formData, setFormData }) => {
         detailsValidator(formData, setFormData)
     }
 
-    if(formData.formIsValid) {
+    if(formData.formIsValid) {        
         return <Redirect to='/' />
     }
     

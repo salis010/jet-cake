@@ -19,8 +19,6 @@ export const logInValidator = (formData, setFormData, logInData, setLogInData) =
         
         const newFormData = Object.assign({}, formData)
         newFormData.formIsValid = isFormValid(reviewedData)
-        console.log(newFormData)
-
         setFormData(newFormData)
     }
 }
