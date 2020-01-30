@@ -1,9 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { MenuItem } from './menu-item'
 import { maxWidth, headerHeight, baseColor } from '../theme'
 
-const menuItems = ['Sign-Up', 'Log-In']
+const menuItems = [
+    { text: 'Sign-Up', to: '/signup'}, 
+    {text: 'Log-In', to: '/login'},
+]
 
 const Wrapper = styled.div`
     display: flex;
@@ -27,17 +31,18 @@ const LSWrapper = styled.div`
 
 const Img = styled.img`
     margin: 0px 20px;
+    cursor: pointer;
 `
 
 export const Header = props => {
     return (
         <Wrapper>
             <ContentWrapper>
-                <Img src='src/partials/home.png' alt='H' />
+                <Link to='/'><Img src='src/partials/home.png' alt='H' /></Link>
                 {props.isLoggedIn && <Img src='src/partials/profile.png' alt='P' />}
                 {!props.isLoggedIn && 
                     <LSWrapper>
-                        {menuItems.map((item, i) => <MenuItem key={i} text={item} /> )}
+                        {menuItems.map((item, i) => <MenuItem key={i} text={item.text} to={item.to} /> )}
                     </LSWrapper>
                 }   
             </ContentWrapper>

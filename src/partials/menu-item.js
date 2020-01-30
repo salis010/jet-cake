@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { headerHeight, menuItem, menuItemHover, menuColor } from '../theme'
 
@@ -11,6 +12,7 @@ const Wrapper = styled.div`
     margin-right: 1px;
     color: ${menuColor};
     background-color: ${menuItem};
+    cursor: pointer;
 
     &:last-child { margin-right: 0; }
 
@@ -19,7 +21,13 @@ const Wrapper = styled.div`
     }
 `
 
+const MenuLink = styled(Link)`
+    text-decoration: none;
+`
+
 export const MenuItem = props =>
-    <Wrapper>
-        {props.text}
-    </Wrapper>
+    <MenuLink to={props.to}>
+        <Wrapper>
+            {props.text}
+        </Wrapper>
+    </MenuLink>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { Header } from './partials/header'
 import { Hero } from './pages/hero'
@@ -39,12 +40,20 @@ export const App = () => {
     })
 
 	return (
-		<Wrapper>
-			<Header isLoggedIn={isLoggedIn} />
-			{/* <SignUp formData={formData} setFormData={setFormData} /> */}
-			<LogIn formData={formData} />
-			{/* <ContentWrapper><Hero /></ContentWrapper> */}
-			<Footer />
-		</Wrapper>
+		<Router>
+			<Wrapper>				
+				<Header isLoggedIn={isLoggedIn} />
+				
+				<Switch>
+					<Route exact path='/' render={() => <ContentWrapper><Hero /></ContentWrapper>} />
+					<Route exact path='/signup' render={() => <SignUp formData={formData} setFormData={setFormData} />} />					
+					<Route exact path='/login' render={() => <LogIn formData={formData} />} />
+					
+					
+				</Switch>
+
+				<Footer />
+			</Wrapper>
+		</Router>
 	)
 }
