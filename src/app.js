@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { Header } from './partials/header'
 import { Hero } from './pages/hero'
-import { SignUp } from './pages/sign-up/sign-up'	
+import { SignUp } from './pages/sign-up'	
 import { LogIn } from './pages/log-in/log-in'	
 import { Footer } from './partials/footer'
 
@@ -25,6 +25,7 @@ export const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false)
 
 	const [ formData, setFormData ] = useState({
+		formIsValid: false,
         formReviewed: false,
         photo: { value: '', isValid: false },
         phoneNumber: { value: '', isValid: false },
@@ -38,18 +39,16 @@ export const App = () => {
         question3: { value: '', isValid: false },
         answer3: { value: '', isValid: false },
     })
-
+	
 	return (
 		<Router>
 			<Wrapper>				
-				<Header isLoggedIn={isLoggedIn} />
+				<Header isLoggedIn={formData.formIsValid} />
 				
 				<Switch>
 					<Route exact path='/' render={() => <ContentWrapper><Hero /></ContentWrapper>} />
-					<Route exact path='/signup' render={() => <SignUp formData={formData} setFormData={setFormData} />} />					
-					<Route exact path='/login' render={() => <LogIn formData={formData} />} />
-					
-					
+					<Route exact path='/signup' render={() => <SignUp formData={formData} setFormData={setFormData} setIsLoggedIn={setIsLoggedIn} />} />					
+					<Route exact path='/login' render={() => <LogIn formData={formData} setFormData={setFormData} />} />
 				</Switch>
 
 				<Footer />

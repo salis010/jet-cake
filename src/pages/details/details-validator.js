@@ -1,6 +1,8 @@
-export const signUpValidator = (formData, setFormData) => {
+import { isFormValid } from '../is-form-valid'
+
+export const detailsValidator = (formData, setFormData) => {
     
-    const reviewedData = Object.assign(formData)
+    const reviewedData = Object.assign({}, formData)
     
     // validate photo file
     const file = reviewedData.photo.value
@@ -65,6 +67,7 @@ export const signUpValidator = (formData, setFormData) => {
     
     
     reviewedData.formReviewed = true
+    reviewedData.formIsValid = isFormValid(reviewedData)
     
-    setFormData({...formData, reviewedData })
+    setFormData(reviewedData)
 }

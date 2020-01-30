@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { baseColor, breakpoint } from '../../theme'
 import { FileInput } from './file-input'
@@ -7,7 +8,7 @@ import { H1 } from '../common/h1'
 import { Label } from '../common/label'
 import { Input } from '../common/input'
 import { securityQuestions } from './security-questions'
-import { signUpValidator } from './sign-up-validator'
+import { detailsValidator } from './details-validator'
 
 const Wrapper = styled.div`
     display: flex;
@@ -66,7 +67,7 @@ const Button = styled.input`
 const options = securityQuestions.map((item, i) => <Option key={i}>{item.question}</Option>)
 options.unshift(<Option key={-1} value='default' disabled hidden>Select a security question...</Option>)
 
-export const SignUp = ({ formData, setFormData }) => {
+export const Details = ({ title, buttonTitle, formData, setFormData }) => {
 
     // removes the date placeholder 'DD/MM/YYYY' from the Date field
     const [ dateType, setDateType ] = useState('text')
@@ -87,18 +88,16 @@ export const SignUp = ({ formData, setFormData }) => {
         
         event.preventDefault()        
 
-        if(signUpValidator(formData, setFormData)) {
-            // submit data to server
-            // redirect to homepage
-        } else {
-            // signUpValidator will return a new State object which will automatically show the failing fields
-        }
+        detailsValidator(formData, setFormData)
     }
 
+    if(formData.formIsValid) {
+        return <Redirect to='/' />
+    }
     
     return (
         <Wrapper>
-            <H1>Sign Up</H1>
+            <H1>{title}</H1>
             <Photo src={formData.photo.value && URL.createObjectURL(formData.photo.value)} isVisible={formData.photo.value} />
             <Form onSubmit={handleSubmit} >
 
@@ -135,7 +134,7 @@ export const SignUp = ({ formData, setFormData }) => {
                 <Label name='Answer 3' formReviewed={formData.formReviewed} isValid={formData.answer3.isValid} />
                 <Input type='text' name='answer3' value={formData.answer3.value} onChange={handleChange} />
 
-                <Button type='submit' value='Sign Up' onChange={handleChange} />
+                <Button type='submit' value={buttonTitle} />
                 
             </Form>
         </Wrapper>

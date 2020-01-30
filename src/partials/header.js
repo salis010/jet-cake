@@ -35,6 +35,7 @@ const Img = styled.img`
 `
 
 export const Header = props => {
+    console.log('Header:', props)
     return (
         <Wrapper>
             <ContentWrapper>

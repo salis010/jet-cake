@@ -1,7 +1,9 @@
-export const logInValidator = (formData, logInData, setLogInData) => {
+import { isFormValid } from '../is-form-valid'
+
+export const logInValidator = (formData, setFormData, logInData, setLogInData) => {
     
     const reviewedData = Object.assign(logInData)
-
+    
     // validate email
     // bypass actual validation method had a backend with database be implemented
     // reviewedData.email.isValid = reviewedData.email.value == formData.email.value
@@ -10,8 +12,15 @@ export const logInValidator = (formData, logInData, setLogInData) => {
     // validate Password
     reviewedData.password.isValid = reviewedData.password.value != ''
     
-    reviewedData.formReviewed = true
-    console.log(reviewedData)
-    
+    reviewedData.formReviewed = true    
     setLogInData({...logInData, reviewedData })
+
+    if(isFormValid(reviewedData)) {
+        
+        const newFormData = Object.assign({}, formData)
+        newFormData.formIsValid = isFormValid(reviewedData)
+        console.log(newFormData)
+
+        setFormData(newFormData)
+    }
 }

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Redirect } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { H1 } from '../common/h1'
 import { Form } from '../common/form'
@@ -38,7 +39,7 @@ const Button = styled.input`
     }
 `
 
-export const LogIn = ({ formData }) => {
+export const LogIn = ({ formData, setFormData }) => {
 
     const [ logInData, setLogInData ] = useState({ 
         formReviewed: false,
@@ -51,9 +52,13 @@ export const LogIn = ({ formData }) => {
     }
 
     const handleSubmit = event => {
-        console.log('Log In')
         event.preventDefault()
-        logInValidator(formData, logInData, setLogInData)
+        logInValidator(formData, setFormData, logInData, setLogInData)
+        return <Redirect to='/' />
+    }
+
+    if(formData.formIsValid) {
+        return <Redirect to='/' />
     }
 
     return (
