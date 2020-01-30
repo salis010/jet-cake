@@ -2,35 +2,17 @@ import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { baseColor, breakpoint } from '../../theme'
 import { FileInput } from './file-input'
-import { Label } from './label'
+import { Form } from '../common/form'
+import { H1 } from '../common/h1'
+import { Label } from '../common/label'
+import { Input } from '../common/input'
 import { securityQuestions } from './security-questions'
-import { validateForm } from './validate-form'
+import { signUpValidator } from './sign-up-validator'
 
 const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center; 
-`
-
-const H1 = styled.h1`
-    color: ${baseColor};
-    margin: 1rem 0 0 0;
-`
-
-const Form = styled.form`
-    display: grid;
-    grid-template-columns: 100%;
-    grid-row-gap: 1rem;
-    grid-column-gap: 0;
-    width: 90%;
-    margin: 20px 0px;
-
-    @media only screen and (min-width: ${breakpoint}) {
-        grid-template-columns: 15rem 35rem;
-        grid-row-gap: 2rem;
-        max-width: 60rem;
-        margin: 40px 0px;
-    }
 `
 
 const Photo = styled.img`
@@ -41,30 +23,6 @@ const Photo = styled.img`
     margin-top: 30px;
     border: 1px solid grey;
     object-fit: cover;
-`
-
-const Input = styled.input`    
-    align-self: center;
-    height: 2.4rem;
-    margin-bottom: 1rem;
-    font-size: 1.4rem;
-    text-indent: 1rem;
-    border: 3px solid grey;
-    border-radius: 0.5rem;
-    outline: none;
-
-    &::-webkit-outer-spin-button,
-    &::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    &[type=number] {
-        -moz-appearance:textfield;
-    }
-
-    @media only screen and (min-width: ${breakpoint}) {
-        margin-bottom: 0;
-    }
 `
 
 const Select = styled.select`
@@ -81,9 +39,6 @@ const Select = styled.select`
 const Option = styled.option`
     color: ${baseColor};
 `
-
-const options = securityQuestions.map((item, i) => <Option key={i}>{item.question}</Option>)
-options.unshift(<Option key={-1} value='default' disabled hidden>Select a security question...</Option>)
 
 const Button = styled.input`
     grid-column-start: 1;
@@ -103,29 +58,15 @@ const Button = styled.input`
     @media only screen and (min-width: ${breakpoint}) {
         margin-bottom: 0px;
         grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 12;
-    grid-row-end: 13;
+        grid-column-end: 3;
+        grid-row-start: 12;
+        grid-row-end: 13;
     }
 `
+const options = securityQuestions.map((item, i) => <Option key={i}>{item.question}</Option>)
+options.unshift(<Option key={-1} value='default' disabled hidden>Select a security question...</Option>)
 
-
-export const SignUp = props => {
-
-    const [ formData, setFormData ] = useState({
-        formReviewed: false,
-        photo: { value: '', isValid: false },
-        phoneNumber: { value: '', isValid: false },
-        address: { value: '', isValid: false },
-        email: { value: '', isValid: false },
-        dateOfBirth: { value: '', isValid: false },
-        question1: { value: '', isValid: false },
-        answer1: { value: '', isValid: false },
-        question2: { value: '', isValid: false },
-        answer2: { value: '', isValid: false },
-        question3: { value: '', isValid: false },
-        answer3: { value: '', isValid: false },
-    })
+export const SignUp = ({ formData, setFormData }) => {
 
     // removes the date placeholder 'DD/MM/YYYY' from the Date field
     const [ dateType, setDateType ] = useState('text')
@@ -146,11 +87,11 @@ export const SignUp = props => {
         
         event.preventDefault()        
 
-        if(validateForm(formData, setFormData)) {
+        if(signUpValidator(formData, setFormData)) {
             // submit data to server
             // redirect to homepage
         } else {
-            // validateForm will return a new State object which will automatically show the failing fields
+            // signUpValidator will return a new State object which will automatically show the failing fields
         }
     }
 

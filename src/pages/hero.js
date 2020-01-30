@@ -29,7 +29,7 @@ const H2 = styled.h2`
 export const Hero = () =>
     <Wrapper>
         <ContentWrapper>
-            <Img src='src/pages/jeeg.jpg' alt='jeeg'/>
+            <Img src='src/pages/images/jeeg.jpg' alt='jeeg'/>
             <Content>
                 <H2>“They call me Jeeg”: an all Italian super hero story</H2>
                 <p>Director Gabriele Mainetti, already known for short movies  with comic inspiration like “Basette” (2008) and “Tiger Boy” (2012), brings to the big screen something completely new to Italian cinema: a  movie, shoot in Italy and with Italian characters, about a superhero with super powers.</p>

@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from '@emotion/styled'
 import { baseColor, breakpoint } from '../../theme'
 
-const check = 'src/pages/sign-up/check.png'
-const error = 'src/pages/sign-up/wrong.png'
+const check = 'src/pages/images/check.png'
+const error = 'src/pages/images/wrong.png'
 
 const Wrapper = styled.div`
     display: flex;
@@ -27,7 +27,7 @@ const StatusIcon = styled.img`
     margin-right: 2rem;
 `
 
-export const Label = props => 
+export const Label = props =>
     <Wrapper>
         <LabelName>{props.name}:</LabelName>
         {props.formReviewed && <StatusIcon src={props.isValid ? check : error} />}   

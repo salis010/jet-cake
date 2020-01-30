@@ -1,4 +1,4 @@
-export const validateForm = (formData, setFormData) => {
+export const signUpValidator = (formData, setFormData) => {
     
     const reviewedData = Object.assign(formData)
     
@@ -15,7 +15,7 @@ export const validateForm = (formData, setFormData) => {
             reviewedData.photo.isValid = true
         }
     }
-    
+   
 
     // validate phone number
     if(reviewedData.phoneNumber.value == '') {
@@ -28,7 +28,6 @@ export const validateForm = (formData, setFormData) => {
     } else {
         reviewedData.phoneNumber.isValid = true
     }
-
     
     
     // validate address
@@ -66,10 +65,6 @@ export const validateForm = (formData, setFormData) => {
     
     
     reviewedData.formReviewed = true
-    console.log(reviewedData)
     
     setFormData({...formData, reviewedData })
-
-    console.log(reviewedData.phoneNumber.isValid)
-
 }
