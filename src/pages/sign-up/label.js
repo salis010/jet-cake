@@ -29,7 +29,6 @@ const StatusIcon = styled.img`
 
 export const Label = props => 
     <Wrapper>
-        {console.log(props)}
         <LabelName>{props.name}:</LabelName>
-        {props.isProcessed && <StatusIcon src={props.isValid ? check : error} />}   
+        {props.formReviewed && <StatusIcon src={props.isValid ? check : error} />}   
     </Wrapper>
