@@ -34,13 +34,21 @@ const Img = styled.img`
     cursor: pointer;
 `
 
-export const Header = props => {
+export const Header = ({formData, setFormData}) => {
+    
+    const handleClick = () => {
+        const newFormData = Object.assign({}, formData)
+        newFormData.formIsValid = false
+        newFormData.formReviewed = false
+        setFormData(newFormData)
+    }
+
     return (
         <Wrapper>
             <ContentWrapper>
                 <Link to='/'><Img src='src/partials/home.png' alt='H' /></Link>
-                {props.isLoggedIn && <Img src='src/partials/profile.png' alt='P' />}
-                {!props.isLoggedIn && 
+                {formData.formIsValid && <Link to='/profile'><Img src='src/partials/profile.png' alt='P' onClick={handleClick} /></Link>}
+                {!formData.formIsValid && 
                     <LSWrapper>
                         {menuItems.map((item, i) => <MenuItem key={i} text={item.text} to={item.to} /> )}
                     </LSWrapper>
